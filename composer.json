@@ -1,0 +1,18 @@
+{
+    "name": "daveliddament/generics",
+    "description": "Attributes for holding information about generics",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave Liddament",
+            "email": "dave@lampbristol.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "StaticAnalysis\\Generics\\v1\\" : "src"
+        }
+    },
+    "require": {}
+}
