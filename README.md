@@ -1,8 +1,9 @@
 # PHP Generics specification (for static analysis)
 
-Generics in PHP are already a reality by using advanced static analysers such as 
-[Psalm](https://psalm.dev) and [PHPStan](https://phpstan.org/).
+> This is a working document. Please raise issues or submit small PRs to enhance it.  
 
+Generics in PHP are already a reality by using advanced static analysers such as 
+[Psalm](https://psalm.dev) and [PHPStan](https://phpstan.org/). 
 There are huge benefits that added type safety that generics bring. 
 These benefits are due to improved clarity of code and reduced costs from fewer bugs.
 
@@ -13,19 +14,17 @@ Additional information required for generics is added in docblocks.
 
 A major blocker to increased uptake is the lack of an "official" standard for generics.
 A standard will provide tools (such as IDEs) and libraries with a clear guidelines for implementing and supporting generics. 
-It will also stop multiple competing standards.
 
 The purposes of this repository are:
-- Formalise the existing unofficial standards.
-- Provide the starting point for a formal specification for PHP Generics using static analysis. (Rest of this document)
-- Create a series of test snippets of code for testing static analysers against the specification. (See `tests`)
-- Eventually progress to a PSR or similar "official" standard.
+- Formalise the existing unofficial standards by specifying the syntax. (Rest of this document)
+- Create a series of test set of code snippets for testing static analysers against the specification. (See `tests`)
+- Eventually progress to a PSR or similar "official" standard. (Assuming this is something the FIG would support).
 
 
 #### Goals
 
 - To create a clear set of standards for annotating code with the additional information required for generics. Analysis is done by static analysers, not at the run time.
-- Provide a set of tests that static analysers analyse to check they are correctly understanding the code (with respect to generics).  
+- Provide a set of code samples that illustrate correct behaviour for generics.
 - The initial standard is pragmatic. It will aim to address the vast majority of use cases. Some edge cases will not be addressed.  
 - The standard will not prevent code from working that does not support the generics notation. 
 - Has buy in from the established static analysers (Psalm, PHPStan and Phan) and IDEs (PHPStorm).
@@ -38,14 +37,17 @@ The purposes of this repository are:
 - This deals with only docblocks required for generics. This is not a replacement for PSRs [5](https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md) and [19](https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc-tags.md). 
 
 
+
 ### Overview
 
 There are two parts to the specification.
 
-1. How code is annotated with the additional information required by generics. Proposed are 2 methods (the standard will use both):
-    - Docblocks (the current unoffical standard) and
-    - Attributes (using the same notation but adding it to an attribute rather than a docblock).
-1. The notation itself (which is based on the current unofficial standard).
+1. The syntax itself (which is based on the current unofficial standard).
+1. How code is annotated with the additional information required by generics. Proposed are 2 methods:
+    - Docblocks (the current unoffical standard).
+    - Subject to demand and support from tools an Attributes. This the same syntax but adding it to an attribute rather than a docblock.
+    
+The specification is supported by a series of code snippets to illustate the expected behaviour (with respect to generics).
 
 This is a brief examples of how code can be annotated with additional information required for generics.
 
@@ -67,8 +69,16 @@ function asArray(
 ```
 
 #### Attribute version 
-This takes the same notation as above and puts it in an [Attribute](https://www.php.net/manual/en/language.attributes.overview.php) instead of a docblock:
+This takes the same notation as above and puts it in an [Attribute](https://www.php.net/manual/en/language.attributes.overview.php) instead of a docblock.
 
+This is included as a possible additional method of annotating code with the extra information required for generics. 
+Points to consider:
+
+- Not currently supported
+- Static analysis tool maintainers and vendors may have little desire to support this. (Initial feedback to the attributes proposal is not favourable.)
+- Is this actually better than the docblock version? That said if there is a desire to use attributes it might be the best method, other suggestions are examined [here](https://www.daveliddament.co.uk/articles/php-generics-standard/).
+
+Code using Attributes instead of docblock:
 ```php
 use StaticAnalysis\Generics\v1\Template;
 use StaticAnalysis\Generics\v1\Type;
@@ -95,7 +105,7 @@ function asArray(
   - [Conclusions](#conclusions)  
   - [Feedback, suggestions, comments](#feedback)
 
-- Attributes (PHP Code):
+- Attributes (PHP Code) (Assuming there is demand and support for this):
   - [Template](src/Template.php)
   - [Type](src/Type.php)
   - [Extend](src/Extend.php)
@@ -114,7 +124,7 @@ function asArray(
 
 - [ ] Add more test cases (e.g. corner cases)
 - [ ] Add test cases for Attributes (port the docblock tests, maybe a job for Rector?) 
-- [ ] Covariance - should this be documented in V1?
+- [ ] Add glossary  
 - [ ] Create script to run test code samples through Psalm and PHPStan and check errors reported by those tools match lines annotated with `ERROR:` in the sample files. 
 - [ ] Add code of conduct
 - [ ] Add contributing doc
@@ -145,6 +155,10 @@ function asArray(
 
 Generics requires additional information. This additional information is added either via docblock or Attribute. 
 
+
+## Glossary 
+
+> TODO add in definition of terms including: supertype, subtype, covariance, contravariance, union types, etc 
 
 ### Template type
 
@@ -845,7 +859,7 @@ Code samples showing edge cases where PHPStan and Psalm differ.
 ## Tests
 
 Tests provide an essential part of this standard. 
-In order to test compliance to the standard a static analyser MUST correctly identify the issues in the test set without and false positives.
+They show a static analyser should interpret code. They also define the correct behaviour for many of the corner cases that appear in generics.
 
 The tests are available under the [tests](tests/) folder.
 
