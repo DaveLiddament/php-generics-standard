@@ -1,6 +1,6 @@
 # PHP Generics specification (for static analysis)
 
-> This is very much work in progress. As of 29th Jan 2021 still trying to determine if there is a need for this and whether now is the time.
+> This is very much work in progress. As of 29th Jan 2021 still trying to determine if there is a need for this and whether now is the time. See and comment on [Is a standard needed?](https://github.com/DaveLiddament/php-generics-standard/issues/2)
 > 
 > If you see and problems or have and comments then please raise issues or submit small PRs to enhance the document.
 
@@ -22,7 +22,6 @@ The purposes of this repository are:
 - Create a series of test set of code snippets for testing static analysers against the specification. (See `tests`)
 - Eventually progress to a PSR or similar "official" standard. (Assuming this is something the FIG would support).
 
-> The big question: [Is a standard needed?](https://github.com/DaveLiddament/php-generics-standard/issues/2) Please add relevant thoughts to the [github issue](https://github.com/DaveLiddament/php-generics-standard/issues/2). 
 
 #### Goals
 
