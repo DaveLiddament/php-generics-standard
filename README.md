@@ -1,6 +1,8 @@
 # PHP Generics specification (for static analysis)
 
-> This is a working document. Please raise issues or submit small PRs to enhance it.
+> This is very much work in progress. As of 29th Jan 2021 still trying to determine if there is a need for this and whether now is the time.
+> 
+> If you see and problems or have and comments then please raise issues or submit small PRs to enhance the document.
 
 Generics in PHP are already a reality by using advanced static analysers such as 
 [Psalm](https://psalm.dev) and [PHPStan](https://phpstan.org/). 
@@ -28,7 +30,7 @@ The purposes of this repository are:
 - Provide a set of code samples that illustrate correct behaviour for generics.
 - The initial standard is pragmatic. It will aim to address the vast majority of use cases. Some edge cases will not be addressed.  
 - The standard will not prevent code from working that does not support the generics notation. 
-- Has buy in from the established static analysers (Psalm, PHPStan and Phan) and IDEs (PHPStorm).
+- Has buy in from the established static analysers (Psalm, PHPStan and Phan) and IDEs (PHPStorm, see their [initial technical feedback](https://github.com/DaveLiddament/php-generics-standard/issues/5)).
 - Will be palatable for library and framework maintainers to add support if they want to.
 
 #### Non Goals
