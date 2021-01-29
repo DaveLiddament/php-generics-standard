@@ -1,8 +1,8 @@
 # PHP Generics specification (for static analysis)
 
-> This is very much work in progress. As of 29th Jan 2021 still trying to determine if there is a need for this and whether now is the time. See and comment on [Is a standard needed?](https://github.com/DaveLiddament/php-generics-standard/issues/2)
+> This is very much work in progress. As of 29th Jan 2021 trying to determine if there is a need for this and whether now is the time. See and comment on [Is a standard needed?](https://github.com/DaveLiddament/php-generics-standard/issues/2)
 > 
-> If you see and problems or have and comments then please raise issues or submit small PRs to enhance the document.
+> If you see any problems or have and comments then please raise issues or submit small PRs to enhance the document.
 
 Generics in PHP are already a reality by using advanced static analysers such as 
 [Psalm](https://psalm.dev) and [PHPStan](https://phpstan.org/). 
